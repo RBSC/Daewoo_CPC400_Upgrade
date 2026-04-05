@@ -1,0 +1,29 @@
+;DAEWOO MSX2 CPC 400/400S
+; (c) DAEWOO, ALL RIGHTS RESERVED
+; Reverse assembly by M.Vlasov (Meteor-M) July 2025. Rev 0.1
+; GAL PLD Address pre-decoder & HANGU controls & Digitizer I/O
+
+chip u46 GAL16V8
+
+a0=1 a1=2 a2=3 a3=4 a4=5 a5=6 a6=7 a7=8 iorqn=9 GND=10 /wrn=11 vid29=12 
+rdn=13 fdca3a7=14 flclk=15 fhclk=16 fcs=17 frst=18 vid30=19 VCC=20 
+
+equations
+
+/vid30 = a1 * a0 * a2 * /a3 * a4 * a5 * a6 * a7 * /iorqn
+vid30.oe = vcc
+/frst = /fhclk * /flclk
+    + fhclk * flclk
+frst.oe = vcc
+/fcs = /a1 * a0 * /a2 * a3 * a4 * /a5 * a6 * a7 * /rdn * /iorqn
+fcs.oe = vcc
+/fhclk = /a1 * a0 * /a2 * a3 * a4 * /a5 * a6 * a7 * /iorqn * wrn
+fhclk.oe = vcc
+/flclk = /a1 * /a0 * /a2 * a3 * a4 * /a5 * a6 * a7 * /iorqn * wrn
+flclk.oe = vcc
+/fdca3a7 = a3 * a4 * a5 * /a6 * a7
+fdca3a7.oe = vcc
+/rdn = gnd
+rdn.oe = gnd
+/vid29 = a1 * /a0 * a2 * /a3 * a4 * a5 * a6 * a7 * /iorqn
+vid29.oe = vcc

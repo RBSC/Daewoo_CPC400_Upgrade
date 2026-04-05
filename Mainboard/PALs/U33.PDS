@@ -1,0 +1,37 @@
+;DAEWOO MSX2 CPC 400/400S
+; (c) DAEWOO, ALL RIGHTS RESERVED
+; Reverse assembly by M.Vlasov (Meteor-M) July 2025. Rev 0.1 
+; GAL PLD ROM & DISK decoder
+
+chip u33 GAL16V8
+
+slt03=1 slt2=2 slt01=3 romcs=4 a14=5 a15=6 a8a13set=8 mreqrd=9 GND=10 /fdca3a7=11 rom0cs=12 
+rom1cs=13 roma14=14 roma15=15 cs1=16 cs2=17 mreqrdn=18 fdc=19 VCC=20 
+
+equations
+
+/fdc = /slt2 * /a8a13set * fdca3a7
+fdc.oe = vcc
+/mreqrdn = mreqrd
+mreqrdn.oe = vcc
+/cs2 = /a14 * a15 * /mreqrd
+cs2.oe = vcc
+/cs1 = a14 * /a15 * /mreqrd
+cs1.oe = vcc
+/roma15 = /romcs * /a15
+    + /slt01 * a14 * /a15
+    + /slt03 * a14 * /a15 * /mreqrd
+roma15.oe = vcc
+/roma14 = /romcs * /a14
+    + /slt2 * a14 * /a15 * a8a13set * /mreqrd
+    + /slt2 * a14 * /a15 * /mreqrd * /fdca3a7
+    + /slt03 * a14 * /a15 * /mreqrd
+roma14.oe = vcc
+/rom1cs = /slt01
+    + /slt03 * a14 * /a15 * /mreqrd
+rom1cs.oe = vcc
+/rom0cs = /romcs
+    + /slt03 * /a14 * /a15 * /mreqrd
+    + /slt2 * a14 * /a15 * a8a13set * /mreqrd
+    + /slt2 * a14 * /a15 * /mreqrd * /fdca3a7
+rom0cs.oe = vcc

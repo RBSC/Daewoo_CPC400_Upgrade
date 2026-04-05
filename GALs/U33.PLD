@@ -1,0 +1,62 @@
+Name     DAEWOO CPC 400/400S U33;
+PartNo   ;
+Date     05.04.2026;
+Revision 01;
+Designer Wierzbowsky [RBSC], Equations by Meteor-M;
+Company  RBSC/Meteor-M;
+Assembly Optimized version;
+Location ;
+Device   g16v8;
+
+/* *************** INPUT PINS *********************/
+
+PIN 1  =  slt03;
+PIN 2  =  slt2;
+PIN 3  =  slt01;
+PIN 4  =  romcs;
+PIN 5  =  a14;
+PIN 6  =  a15;
+PIN 7  =  nc;
+PIN 8  =  a8a13set;
+PIN 9  =  mreqrd;
+PIN 11 =  !fdca3a7;
+
+PIN 10 =  gnd;
+PIN 20 =  vcc;
+
+/* *************** OUTPUT PINS *********************/
+
+PIN 12 =  rom0cs;
+PIN 13 =  rom1cs;
+PIN 14 =  roma14;
+PIN 15 =  roma15;
+PIN 16 =  cs1;
+PIN 17 =  cs2;
+PIN 18 =  mreqrdn;
+PIN 19 =  fdc;
+
+/* *************** EQUATIONS *********************/
+
+!fdc = !slt03 & !a8a13set & fdca3a7;
+fdc.oe = 'b'1;
+
+!mreqrdn = mreqrd;
+mreqrdn.oe = 'b'1;
+
+!cs2 = !a14 & a15 & !mreqrd;
+cs2.oe = 'b'1;
+
+!cs1 = a14 & !a15 & !mreqrd;
+cs1.oe = 'b'1;
+
+!roma15 = !romcs & !a15 # !slt01 & !a15;
+roma15.oe = 'b'1;
+
+!roma14 = !romcs & !a14 # !slt01 & !a14 # !slt03 & a14 & !a15 & a8a13set & !mreqrd # !slt03 & a14 & !a15 & !mreqrd & !fdca3a7;
+roma14.oe = 'b'1;
+
+!rom1cs = !slt01;
+rom1cs.oe = 'b'1;
+
+!rom0cs = !romcs # !slt03 & !a14 & !a15 & !mreqrd # !slt03 & a14 & !a15 & a8a13set & !mreqrd # !slt03 & a14 & !a15 & !mreqrd & !fdca3a7;
+rom0cs.oe = 'b'1;

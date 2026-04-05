@@ -1,0 +1,10 @@
+"Id";"Designator";"Footprint";"Quantity";"Designation";"Supplier and ref";
+1;"C5";"CP_Radial_D5.0mm_P2.50mm";1;"100uF 16V";;;
+2;"C6,C7,C8,C1,C2,C3,C4";"C_0805_2012Metric";7;"100nF";;;
+3;"U3";"SO-14_3.9x8.65mm_P1.27mm";1;"74LS30";;;
+4;"U8,U9,U11,U10";"SOP-32_11.305x20.495mm_P1.27mm";4;"AS6C4008-55PCN";;;
+5;"U5";"SOIC-20W_7.5x12.8mm_P1.27mm";1;"74LS373";;;
+6;"U7,U6";"SO-16_3.9x9.9mm_P1.27mm";2;"74LS139";;;
+7;"U4";"SO-16_3.9x9.9mm_P1.27mm";1;"74LS257";;;
+8;"U1,U2";"SO-16_3.9x9.9mm_P1.27mm";2;"74LS670";;;
+9;"BUS1";"DaewooBackSlotConnector";1;"my_components_MSX_SLOT_HOST";;;
